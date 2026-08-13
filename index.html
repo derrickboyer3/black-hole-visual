@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Black Hole — gravitationally lensed accretion disk</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: rgba(255, 255, 255, 0.72);
+        --ink-dim: rgba(255, 255, 255, 0.34);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: #000;
+        overflow: hidden;
+        font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+      }
+
+      #scene {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        touch-action: none;
+      }
+
+      #overlay {
+        position: fixed;
+        left: 18px;
+        bottom: 16px;
+        pointer-events: none;
+        color: var(--ink);
+        font-size: 11px;
+        line-height: 1.65;
+        letter-spacing: 0.04em;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+        transition: opacity 0.25s ease;
+      }
+
+      #overlay h1 {
+        margin: 0 0 6px;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 238, 214, 0.9);
+      }
+
+      #overlay dl {
+        margin: 0;
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 0 10px;
+      }
+
+      #overlay dt { color: var(--ink-dim); }
+      #overlay dd { margin: 0; }
+
+      #hud {
+        position: fixed;
+        left: 18px;
+        top: 16px;
+        pointer-events: none;
+        color: var(--ink-dim);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+      }
+
+      .hidden { opacity: 0; }
+      .lil-gui.hidden { display: none; }
+
+      .lil-gui {
+        --background-color: rgba(12, 12, 14, 0.82);
+        --widget-color: rgba(255, 255, 255, 0.1);
+        --font-size: 11px;
+        --padding: 5px;
+        backdrop-filter: blur(14px);
+      }
+
+      #loading {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: var(--ink-dim);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <div id="hud"><span id="fps">—</span></div>
+
+    <div id="overlay">
+      <h1>Schwarzschild&nbsp;·&nbsp;r<sub>s</sub>&nbsp;=&nbsp;1</h1>
+      <dl>
+        <dt>drag</dt><dd>orbit</dd>
+        <dt>wheel</dt><dd>approach / retreat</dd>
+        <dt>O</dt><dd>toggle auto-orbit</dd>
+        <dt>space</dt><dd>freeze time</dd>
+        <dt>S</dt><dd>save PNG</dd>
+        <dt>F</dt><dd>fullscreen</dd>
+        <dt>H</dt><dd>hide UI</dd>
+      </dl>
+    </div>
+
+    <div id="loading">tracing null geodesics…</div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
